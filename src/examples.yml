@@ -1,0 +1,615 @@
+- id: shared-components
+  title: Shared components
+  form: https://sfds.form.io/sharedcomponents
+
+- id: single-file
+  title: Single file upload
+  form:
+    components:
+      - type: file
+        storage: base64
+        label: This is the label
+        description: This is the description
+
+- id: multi-file
+  title: Multiple file upload
+  form:
+    components:
+      - type: file
+        storage: base64
+        label: This is the label
+        description: This is the description
+        multiple: true
+
+- id: checkbox
+  title: Checkbox
+  form:
+    components:
+      - type: checkbox
+        label: This is a long label, and it should wrap nicely alongside the checkbox with the description below it.
+        description: And this is the description
+        tooltip: And this is the tooltip
+
+- id: autocomplete
+  title: Autocomplete
+  form:
+    components:
+      - type: select
+        key: job
+        label: Your job
+        tags:
+          - autocomplete
+        data:
+          values:
+            - label: Healthcare worker
+              value: healthCareWorker
+            - label: Emergency services
+              value: emergencyServices
+            - label: Food and agriculture
+              value: foodAndAgriculture
+            - label: Energy
+              value: energy
+            - label: Water and wastewater
+              value: waterAndWastewater
+      - type: select
+        key: words
+        label: Pick some words
+        tags:
+          - autocomplete
+        multiple: true
+        customOptions:
+          maxItemCount: 3
+        properties:
+          en:autocomplete.maxItemText: "Sorry, {{count}} tags max!"
+        description: |
+          This uses <code>multiple</code> and
+          <code>customOptions.maxItemCount</code> to limit the number of
+          choices, and the <code>autocomplete.maxItemText</code> translation
+          key to change the text that shows up when two are selected.
+        data:
+          values:
+            - label: green
+              value: green
+            - label: empathic
+              value: empathic
+            - label: never
+              value: never
+            - label: eleven
+              value: eleven
+            - label: dry
+              value: dry
+            - label: valuable
+              value: valuable
+            - label: fortify
+              value: fortify
+            - label: whatever
+              value: whatever
+            - label: leaven
+              value: leaven
+      - type: htmlelement
+        tag: div
+        content: |
+          <b>ProTip:</b> Add <a
+          href="?language=debug"><code>?language=debug</code></a> to the
+          query string to see the <code>autocomplete.*</code> translation keys
+          in context.
+  options:
+    i18n:
+      debug:
+        autocomplete.noResultsText: 'autocomplete.noResultsText'
+        autocomplete.itemSelectText: 'autocomplete.itemSelectText'
+        autocomplete.maxItemText: 'autocomplete.maxItemText'
+        autocomplete.noChoicesText: 'autocomplete.noChoicesText'
+        autocomplete.searchPlaceholderValue: 'autocomplete.searchPlaceholderValue'
+
+- id: radio
+  title: Radio
+  form:
+    components:
+      - type: radio
+        label: This is the label
+        description: And this is the description
+        tooltip: And this is the tooltip
+        values:
+          - label: Option 1
+            value: 1
+          - label: Option 2 (blah)
+            value: 2
+          - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
+            value: 3
+
+- id: selectboxes
+  title: Select boxes
+  form:
+    components:
+      - type: selectboxes
+        label: This is the label
+        description: And this is the description
+        tooltip: And this is the tooltip
+        values:
+          - label: Option 1
+            value: 1
+          - label: Option 2 (blah)
+            value: 2
+          - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
+            value: 3
+
+
+- id: us-state
+  title: U.S. state select (custom component)
+  form:
+    components:
+      - type: state
+        label: This is the label
+        description: This is the description
+        tooltip: And this is the tooltip
+
+- id: zip-code
+  title: ZIP code
+  form:
+    components:
+      - type: zip
+        label: This is the label
+        description: This is the description
+        tooltip: And this is the tooltip
+
+- id: columns-2
+  title: Columns (2)
+  form:
+    components:
+      - type: columns
+        columns:
+          - width: 3
+            components:
+              - type: textfield
+                key: a
+                label: Field 1
+          - width: 3
+            components:
+              - type: textfield
+                key: b
+                label: Field 2
+
+- id: columns-3
+  title: Columns (3)
+  form:
+    components:
+      - type: columns
+        columns:
+          - width: 2
+            components:
+              - type: textfield
+                key: a
+                label: Field 1
+          - width: 2
+            components:
+              - type: textfield
+                key: b
+                label: Field 2
+          - width: 2
+            components:
+              - type: number
+                key: c
+                label: Field 3
+                defaultValue: 10
+
+- id: address
+  title: Address (custom component)
+  form:
+    components:
+      - type: address
+        label: This is the label
+        description: This is the description
+        tooltip: And this is the tooltip
+
+- id: fieldset-well
+  title: Fieldset in a well
+  form:
+    components:
+      - type: well
+        components:
+          - type: fieldset
+            legend: This is the fieldset legend
+            description: This is the fieldset description
+            components:
+              - type: textfield
+                key: name
+                label: Your name
+              - type: number
+                key: age
+                label: Your age
+
+- id: review
+  title: Review (custom component)
+  options:
+    scroll: false
+  form:
+    display: wizard
+    components:
+      - type: panel
+        title: Intro page
+        components:
+          - type: htmlelement
+            tag: h3
+            content: Hello, world!
+      - type: panel
+        title: Basics page
+        components:
+          - type: textfield
+            key: name
+            label: Your name
+            defaultValue: Judge
+            validate:
+              required: true
+          - type: number
+            key: age
+            label: Age
+            defaultValue: 50
+      - type: panel
+        title: More data
+        components:
+          - type: address
+            key: address
+            label: Your address
+            defaultValue:
+              line1: 123 Main St
+              city: San Francisco
+              state: CA
+              zip: 94110
+      - type: panel
+        title: Review your submission
+        components:
+          - type: review
+            label: ''
+
+- id: review-inline
+  title: Review (inline)
+  form:
+    components:
+      - type: textfield
+        key: name
+        label: Your name
+        defaultValue: Judge
+        validate:
+          required: true
+      - type: number
+        key: age
+        label: Age
+        defaultValue: 50
+      - type: panel
+        title: Review your submission
+        components:
+          - type: review
+            label: ''
+
+- id: day-default
+  title: Day (default)
+  form:
+    components:
+      - type: day
+        label: This is the label
+        description: This is the description
+
+- id: datetime-date-only
+  title: Date (no time)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+        enableTime: false
+
+- id: datetime-default
+  title: Date & time
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+
+- id: datetime-spanish
+  title: Date & time (Spanish)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+  options:
+    language: es
+
+- id: datetime-chinese
+  title: Date & time (Chinese traditional)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+  options:
+    language: zh-tw
+
+- id: datetime-chinese-simplified
+  title: Date & time (Chinese simplified)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+  options:
+    language: zh
+
+- id: datetime-time-only
+  title: Time (no date)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+        enableDate: false
+
+- id: well
+  title: Well
+  form:
+    components:
+      - type: well
+        label: This is a well
+        components:
+          - type: textfield
+            label: A text field
+            key: some-text-field
+          - type: number
+            label: A number field
+            key: numero
+          - type: textarea
+            label: A text area field
+            key: textarea
+            value: ''
+          - type: checkbox
+            label: A checkbox
+            description: The checkbox description
+          - type: select
+            label: Select field
+            data:
+              values:
+                - label: Option 1
+                  value: 1
+                - label: Option 2
+                  value: 2
+
+- id: fieldset
+  title: Fieldset
+  form:
+    components:
+      - type: fieldset
+        legend: The fieldset legend
+        description: This fieldset description
+        components:
+          - type: textfield
+            label: A text field
+            key: some-text-field
+          - type: number
+            label: A number field
+            key: numero
+          - type: textarea
+            label: A text area field
+            key: textarea
+            value: ''
+          - type: checkbox
+            label: A checkbox
+            description: The checkbox description
+          - type: select
+            label: Select field
+            data:
+              values:
+                - label: Option 1
+                  value: 1
+                - label: Option 2
+                  value: 2
+
+- id: fieldset-in-well
+  title: Fieldset in a well
+  form:
+    components:
+      - type: well
+        label: The well label
+        components:
+          - type: fieldset
+            legend: The fieldset legend
+            description: The fieldset description
+            components:
+              - type: textfield
+                label: A text field
+                key: some-text-field
+              - type: number
+                label: A number field
+                key: numero
+              - type: textarea
+                label: A text area field
+                key: textarea
+                value: ''
+              - type: checkbox
+                label: A checkbox
+                description: The checkbox description
+              - type: select
+                label: Select field
+                data:
+                  values:
+                    - label: Option 1
+                      value: 1
+                    - label: Option 2
+                      value: 2
+
+- id: kitchen-sink
+  title: Kitchen sink
+  form:
+    components:
+      - type: textfield
+        label: A text field
+        description: The description
+      - type: number
+        label: A number field
+        description: The description
+      - type: textarea
+        label: A text area field
+        description: The description
+      - type: checkbox
+        label: A checkbox
+        description: The description
+      - type: select
+        label: Select field
+        description: The description
+        data:
+          values:
+            - label: Option 1
+              value: 1
+            - label: Option 2
+              value: 2
+      - type: selectboxes
+        label: Select boxes
+        description: The description
+        values:
+          - label: Select box 1
+            value: 1
+          - label: Select box 2
+            value: 2
+          - label: Select box 3
+            value: 3
+      - type: radio
+        description: The description
+        values:
+          - label: Radio 1
+            value: 1
+          - label: Radio 2
+            value: 2
+          - label: Radio 3
+            value: 3
+      - type: button
+        label: This is a button
+        description: The description
+      - type: email
+        label: Email field
+        description: The description
+      - type: phoneNumber
+        label: Phone number field
+        description: The description
+      - type: address
+        label: Address field
+        description: The description
+      - type: datetime
+        label: Datetime field
+        description: The description
+      - type: currency
+        label: Currency field
+        description: The description
+      - type: file
+        label: File field
+        description: The description
+        storage: base64
+
+- id: error-messages
+  title: Error messages
+  options:
+    example:
+      submit: true
+  form:
+    components:
+
+      - type: fieldset
+        legend: Textfield
+        components:
+          - type: textfield
+            key: textfieldMaxLength
+            label: Max length
+            defaultValue: this is too long
+            validate:
+              maxLength: 10
+          - type: textfield
+            key: textfieldMaxLengthCustom
+            label: Max length + custom message
+            defaultValue: this is too long
+            validate:
+              maxLength: 10
+              customMessage: Custom error message
+          - type: textfield
+            key: textfieldMaxLengthRequired
+            label: Max length (required)
+            defaultValue: this is too long
+            validate:
+              required: true
+              maxLength: 10
+          - type: textfield
+            key: textfieldMaxLengthRequiredCustom
+            label: Max length (required) custom message
+            defaultValue: this is too long
+            validate:
+              required: true
+              maxLength: 10
+              customMessage: Custom error message
+
+      - type: fieldset
+        legend: Email
+        components:
+          - type: email
+            key: emailInvalid
+            label: Email (invalid)
+            defaultValue: not an email
+          - type: email
+            key: emailRequiredInvalid
+            label: Email (invalid + required)
+            defaultValue: not an email
+            validate:
+              required: true
+          - type: email
+            key: emailRequiredInvalidEmpty
+            label: Email (invalid + required, empty)
+            validate:
+              required: true
+
+      - type: fieldset
+        legend: Radio
+        components:
+          - type: radio
+            key: radioRequired
+            label: Radio (required)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+          - type: radio
+            key: radioRequiredCustom
+            label: Radio (required, custom message)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+              customMessage: Please choose an option.
+
+      - type: fieldset
+        legend: Checkboxes (select boxes)
+        components:
+          - type: selectboxes
+            key: selectboxesRequired
+            label: Select boxes (required)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+          - type: selectboxes
+            key: selectboxesRequiredCustom
+            label: Select boxes (required, custom message)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+              customMessage: Please choose an option.

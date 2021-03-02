@@ -1,0 +1,6 @@
+*.config.js
+.*rc.js
+.*rc.yml
+.github/
+script/
+__tests__

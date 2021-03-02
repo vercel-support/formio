@@ -1,0 +1,134 @@
+$CSS_EDGE_ALIAS: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+);
+
+$CSS_CORNER_ALIAS: (
+  tr: top-right,
+  br: bottom-right,
+  bl: bottom-left,
+  tl: top-left,
+);
+
+$CSS_BORDER_EDGE_CORNERS: (
+  top: (top-left, top-right),
+  right: (top-right, bottom-right),
+  bottom: (bottom-right, bottom-left),
+  left: (bottom-left, top-left),
+);
+
+$grid-columns: 6 !default;
+
+$breakpoint-aliases: (
+  xs: $mq-tiny,
+  sm: $mq-small,
+  // narrow: $mq-narrow,
+  md: $mq-medium,
+  lg: $mq-wide,
+);
+
+$spacers: (
+  0: 0,
+  1: 10px,
+  2: 20px,
+  3: 40px,
+  4: 60px,
+  5: 96px,
+) !default;
+
+$border-widths: (
+  0: 0,
+  1: 3px,
+);
+
+$radii: (
+  0: 0,
+  1: 8px,
+  round: 1000px,
+);
+
+$font-weights: (
+  light: $fw-light,
+  regular: $fw-regular,
+  medium: $fw-medium,
+  bold: $fw-bold,
+);
+
+$color-map: (
+  white: $white,
+  black: $black,
+  slate: $slate,
+  light-slate: $light-slate,
+  slate-65: $light-slate,
+  slate-70: $light-slate,
+  dark-blue: $dark-blue,
+  bright-blue: $bright-blue,
+  blue-1: $blue-1,
+  blue-2: $blue-2,
+  blue-3: $blue-3,
+  yellow-1: $yellow-1,
+  yellow-2: $yellow-2,
+  yellow-3: $yellow-3,
+  yellow-4: $yellow-4,
+  green-1: $green-1,
+  green-2: $green-2,
+  green-3: $green-3,
+  green-4: $green-4,
+  red-1: $red-1,
+  red-2: $red-2,
+  red-3: $red-3,
+  red-4: $red-4,
+  purple-1: $purple-1,
+  purple-2: $purple-2,
+  purple-3: $purple-3,
+  purple-4: $purple-4,
+  grey-1: $grey-1,
+  grey-2: $grey-2,
+  grey-3: $grey-3,
+  grey-4: $grey-4,
+  grey-5: $grey-5,
+  none: transparent,
+  inherit: inherit,
+);
+
+$breakpoint-variants: ('': null, );
+
+@each $key, $value in $breakpoint-aliases {
+  $breakpoint-variants: map-merge($breakpoint-variants, ('-#{$key}': $value, ));
+}
+
+@function color($name) {
+  @return map-get($color-map, $name);
+}
+
+@function spacer($index) {
+  @return map-get($spacers, $index);
+}
+
+@function border-width($index) {
+  @return map-get($border-widths, $index);
+}
+
+@function radius($index) {
+  @return map-get($radii, $index);
+}
+
+@mixin breakpoint($name-or-threshold) {
+  $threshold: $name-or-threshold;
+
+  @if map-has-key($breakpoint-aliases, $name-or-threshold) {
+    $threshold: map-get($breakpoint-aliases, $name-or-threshold);
+  }
+
+  @if $threshold {
+    @media screen and (min-width: $threshold) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}

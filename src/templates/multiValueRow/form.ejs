@@ -1,0 +1,11 @@
+<div class="d-flex flex-items-center flex-justify-start mb-1">
+  <div class="mr-1">{{ ctx.element }}</div>
+  {% if (!ctx.disabled) { %}
+    <div>
+      <button type="button" class="btn bg-slate-65" ref="removeRow"
+         aria-label="{{ ctx.t('Remove') }}">
+        <span data-icon="delete"></span>
+      </button>
+    </div>
+  {% } %}
+</div>

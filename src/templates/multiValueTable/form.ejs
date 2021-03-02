@@ -1,0 +1,11 @@
+<div class="multi-value-table">
+  {{ ctx.rows }}
+  {% if (!ctx.disabled) { %}
+    <button class="btn bg-slate" ref="addButton">
+      <div class="d-flex flex-items-center">
+        <div data-icon="add" data-height="19" class="d-flex flex-items-center mr-1"></div>
+        <span>{{ ctx.t('Add another') }}</span>
+      </div>
+    </button>
+  {% } %}
+</div>

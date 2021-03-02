@@ -1,0 +1,82 @@
+@import "./buttons";
+@import "./choices";
+@import "./file";
+@import "./fieldsets";
+@import "./inputs";
+@import "./hacks";
+@import "./navigation";
+
+.field-description,
+.tooltip {
+  color: $light-slate;
+}
+
+.formio-error-wrapper,
+.has-error {
+  color: $red-3;
+
+  .field-description,
+  .tooltip {
+    color: inherit !important;
+  }
+
+  input:not([type="button"]),
+  select,
+  textarea {
+    border-color: $red-3 !important;
+  }
+}
+
+.field-required,
+.required .label-required,
+.formio-component-radio.required legend {
+  &::after {
+    display: inline-block;
+    content: "*";
+    color: $red-3;
+  }
+}
+
+.formio-component {
+  margin-bottom: spacer(3);
+}
+
+.formio-component-content,
+.formio-component-htmlelement,
+.formio-nested .formio-component.row,
+.formio-nested .formio-component:last-of-type {
+  margin-bottom: 0;
+}
+
+label {
+  margin: 0 0 spacer(1) 0;
+}
+
+.formio-component-radio,
+.formio-component-selectboxes {
+  label {
+    letter-spacing: 0;
+    line-height: 24px;
+  }
+}
+
+.formio-nested {
+  label {
+    // XXX: Figma suggests 14px
+    // https://www.figma.com/file/WLu0Iwr7TjlFwD8ZG5xYcjev/Basic-Components?node-id=811%3A128
+    font-size: 16px;
+  }
+
+  .formio-component {
+    margin-bottom: spacer(2);
+
+    &.row,
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.alert.alert-success {
+  display: none;
+}
