@@ -132,9 +132,8 @@ module.exports = async (req, res) => {
   }
 
   const content = templates.render('wtf.html', data);
-  res.writeHead(200, { 'content-type': 'text/html' });
-  res.write(content);
-  res.end();
+  res.setHeader('Content-Type', 'text/html');
+  res.send(content);
 };
 
 function isSFGovURL(url) {
