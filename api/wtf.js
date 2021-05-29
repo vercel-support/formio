@@ -133,6 +133,7 @@ module.exports = async (req, res) => {
 
   res.setHeader('Content-Type', 'text/html');
   const content = templates.render('wtf.html', data);
+  console.log('content =', content)
   res.send(content);
 };
 
