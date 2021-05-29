@@ -131,8 +131,8 @@ module.exports = async (req, res) => {
     // data.error = 'Please enter a URL from sf.gov or form.io'
   }
 
-  const content = templates.render('wtf.html', data);
   res.setHeader('Content-Type', 'text/html');
+  const content = templates.render('wtf.html', data);
   res.send(content);
 };
 
