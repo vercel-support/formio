@@ -223,6 +223,5 @@ async function getSFGovPages(options) {
   const { data } = await fetch(`${FORMS_API_URL}/api/sfgov`).then((res) =>
     res.json()
   );
-  console.log('test')
   return (data && data.forms) || [];
 }
